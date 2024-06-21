@@ -9,7 +9,8 @@ router.post("/signup", UserControllers.createUser);
 
 router.post(
   "/login",
-    validateRequest(userValidation.loginValidationSchema),
+
+  validateRequest(userValidation.loginValidationSchema),
   UserControllers.loginUser
 );
 

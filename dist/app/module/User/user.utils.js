@@ -12,21 +12,22 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-const app_1 = __importDefault(require("./app"));
-const config_1 = __importDefault(require("./app/config"));
-const mongoose_1 = __importDefault(require("mongoose"));
-let server;
-function main() {
-    return __awaiter(this, void 0, void 0, function* () {
-        try {
-            yield mongoose_1.default.connect(config_1.default.database_url);
-            server = app_1.default.listen(config_1.default.port, () => {
-                console.log(` app listening on port ${config_1.default.port}`);
-            });
-        }
-        catch (error) {
-            console.log(error);
-        }
+exports.isPasswordMatched = exports.verifyToken = exports.createToken = void 0;
+const bcrypt_1 = __importDefault(require("bcrypt"));
+const jsonwebtoken_1 = __importDefault(require("jsonwebtoken"));
+const createToken = (jwtPayload, secret, expiresIn) => {
+    return jsonwebtoken_1.default.sign(jwtPayload, secret, {
+        expiresIn,
     });
-}
-main();
+};
+exports.createToken = createToken;
+const verifyToken = (token, secret) => {
+    return jsonwebtoken_1.default.verify(token, secret);
+};
+exports.verifyToken = verifyToken;
+const isPasswordMatched = function (plainTextPassword, hashedPassword) {
+    return __awaiter(this, void 0, void 0, function* () {
+        return yield bcrypt_1.default.compare(plainTextPassword, hashedPassword);
+    });
+};
+exports.isPasswordMatched = isPasswordMatched;
