@@ -17,9 +17,7 @@ const createSlot = catchAsync(async (req, res) => {
 });
 
 const getSlot = catchAsync(async (req, res) => {
-  console.log(req.headers.date);
-
-  
+  // console.log(req.headers.date);
 
   const result = await SlotServices.getslot(req.query);
 

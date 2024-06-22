@@ -42,7 +42,7 @@ const getAllRoom = catchAsync(async (req, res) => {
 
 const updateRoom = catchAsync(async (req, res) => {
   const { id } = req.params;
-  console.log(req.body);
+  // console.log(req.body);
   const result = await RoomServices.updateRoomIntoDB(id, req.body);
 
   sendResponse(res, {

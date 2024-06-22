@@ -52,7 +52,7 @@ const getslot = async (data: Record<string, unknown>) => {
 
   const date = data?.date;
   const roomId = data?.roomId;
-  console.log(date, roomId);
+  // console.log(date, roomId);
 
   const result = await SlotModel.find(query).populate("room");
   return result;

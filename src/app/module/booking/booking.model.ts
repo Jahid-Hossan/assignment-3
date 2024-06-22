@@ -10,14 +10,17 @@ const bookingSchema = new Schema<TBooking>(
     slots: {
       type: [Schema.Types.ObjectId],
       required: true,
+      ref: "Slot",
     },
     room: {
       type: Schema.Types.ObjectId,
       required: true,
+      ref: "Room",
     },
     user: {
       type: Schema.Types.ObjectId,
       required: true,
+      ref: "User",
     },
     totalAmount: {
       type: Number,
@@ -36,7 +39,5 @@ const bookingSchema = new Schema<TBooking>(
     timestamps: true,
   }
 );
-
-
 
 export const BookingModel = model<TBooking>("Booking", bookingSchema);

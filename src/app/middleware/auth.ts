@@ -10,10 +10,12 @@ const auth = (...requiredRoles: TUserRole[]) => {
   return catchAsync(async (req: Request, res: Response, next: NextFunction) => {
     const token = req.headers.authorization?.split(" ")[1];
 
+    // console.log(token);
+
     if (!token) {
       throw new Error("You are not authorized");
     }
-    console.log(token);
+    // console.log(token);
 
     const decoded = jwt.verify(
       token,

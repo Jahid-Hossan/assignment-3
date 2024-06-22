@@ -1,6 +1,7 @@
 import { RoomModel } from "../room/room.model";
 import { TBooking } from "./booking.interface";
 import { BookingModel } from "./booking.model";
+import { UserModel } from "../User/user.model";
 
 const createBookingIntoDB = async (payload: TBooking) => {
   const room: any = await RoomModel.findById(payload.room);
@@ -29,7 +30,7 @@ const getAllBookingFromDB = async () => {
   return result;
 };
 
-const updateBookingIntoDB = async (id: string, ) => {
+const updateBookingIntoDB = async (id: string) => {
   const result = await BookingModel.findByIdAndUpdate(
     id,
     { isConfirmed: "confirmed" },
@@ -53,10 +54,22 @@ const deleteBookingFromDB = async (id: string) => {
   return result;
 };
 
+const getMyBookingFromDB = async (email: string) => {
+  const user = await UserModel.find({ email });
+
+  // console.log(user[0]._id);
+  const result = await BookingModel.find({ user: user[0]._id })
+    .populate("slots")
+    .populate("room")
+    .populate("user");
+  return result;
+};
+
 export const BookingServices = {
   createBookingIntoDB,
   getABookingFromDB,
   getAllBookingFromDB,
   updateBookingIntoDB,
   deleteBookingFromDB,
+  getMyBookingFromDB,
 };
