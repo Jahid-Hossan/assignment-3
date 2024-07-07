@@ -5,7 +5,7 @@ Here are the steps:
 1. Clone the repository:
 
    ```bash
-   git clone https://github.com/Jahid-Hossan/Apollo-Level2-assignment-2
+   git clone https://github.com/Jahid-Hossan/assignment-3
    ```
 
 2. Navigate to the project directory:
