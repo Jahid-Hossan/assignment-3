@@ -1,4 +1,4 @@
-import { Schema, model } from "mongoose";
+import mongoose, { Schema, model } from "mongoose";
 import { TUser } from "./user.interface";
 import bcrypt from "bcrypt";
 import config from "../../config";

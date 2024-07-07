@@ -11,6 +11,8 @@ const createUserIntoDB = async (payload: TUser) => {
 const loginUser = async (payload: TLoginUser) => {
   const user = await UserModel.findOne({ email: payload.email });
 
+  // console.log(user);
+
   if (!user) {
     throw new Error("User does not exist");
   }
@@ -36,9 +38,22 @@ const loginUser = async (payload: TLoginUser) => {
     config.jwt_refresh_expires_in as string
   );
 
+  // console.log(delete user.password);
+  const theUser = {
+    _id: user._id,
+    name: user.name,
+    email: user.email,
+    phone: user.phone,
+    role: user.role,
+    address: user.address,
+  };
+
+  console.log(theUser);
+
   return {
     accessToken,
     refreshToken,
+    theUser,
   };
 };
 
